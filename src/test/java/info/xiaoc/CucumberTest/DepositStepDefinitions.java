@@ -29,9 +29,14 @@ public class DepositStepDefinitions {
         account.deposit(amount);
     }
 
-    @Then("^the balance should be £(\\d+)$")
+    @Then("^the balance should be £(-?\\d+)$")
     public void the_balance_should_be_£(int expectedBalance) {
         assertTrue("The expected balance was £"+expectedBalance+", but actually was: "
                 + account.getBalance(), account.getBalance() == expectedBalance);
+    }
+
+    @When("^£(\\d+) is widthdrawn from the account$")
+    public void £_is_widthdrawn_from_the_account(int amount) throws Throwable {
+        account.withdraw(amount);
     }
 }
